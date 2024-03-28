@@ -1,5 +1,10 @@
+
+
 import 'package:flutter/material.dart';
+import 'package:bookapp/view/login/sign_in_view.dart';
+import 'package:bookapp/view/login/sign_up_view.dart';
 import 'package:bookapp/common/color_extension.dart';
+import 'package:bookapp/common_widget/round_button.dart';
 
 class WelcomeView extends StatefulWidget {
   const WelcomeView({super.key});
@@ -14,61 +19,56 @@ class _WelcomeViewState extends State<WelcomeView> {
     var media = MediaQuery.of(context).size;
     return Scaffold(
       body: Stack(children: [
-        Image.asset("assets\img\welcome_bg.png",
-            width: media.width, height: media.height, fit: BoxFit.cover),
+        Image.asset(
+          "assets/img/welcome_bg.png",
+          width: media.width,
+          height: media.height,
+          fit: BoxFit.cover,
+        ),
         SafeArea(
-          child: Container(
-            width: media.width,
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: media.width * 0.25,
-                ),
-                Text(
-                  "Books For\nEvery Taste.",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: TColor.primary,
-                      fontSize: 35,
-                      fontWeight: FontWeight.w600),
-                ),
-                SizedBox(
-                  height: media.width * 0.25,
-                ),
-                MaterialButton(
-                  onPressed: () {},
-                  textColor: Colors.white,
-                  color: TColor.primary,
-                  height: 50,
-                  minWidth: double.maxFinite,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0)),
-                  child: Text(
-                    "Sign in",
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                 MaterialButton(
-                  onPressed: () {},
-                  textColor: Colors.white,
-                  color: TColor.primary,
-                  height: 50,
-                  minWidth: double.maxFinite,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0)),
-                  child: Text(
-                    "Sign up",
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
-                  ),
-                ),
-              ],
-            ),
+            child: Container(
+          width: media.width,
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: Column(
+            children: [
+              SizedBox(
+                height: media.width * 0.25,
+              ),
+              Text(
+                "Books For\nEvery Taste.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: TColor.primary,
+                    fontSize: 35,
+                    fontWeight: FontWeight.w600),
+              ),
+              SizedBox(
+                height: media.width * 0.28,
+              ),
+              RoundButton(
+                title: "Sign in",
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignInView()));
+                },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              RoundButton(
+                title: "Sign up",
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignUpView()));
+                },
+              ),
+            ],
           ),
-        )
+        ))
       ]),
     );
   }
