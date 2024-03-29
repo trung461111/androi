@@ -1,7 +1,8 @@
+import 'package:bookapp/view/main_tab_view/main_tab_view.dart';
 import 'package:flutter/material.dart'
     show BuildContext, MaterialApp, StatelessWidget, ThemeData, Widget, runApp;
 import 'package:bookapp/common/color_extension.dart';
-import 'package:bookapp/view/onboarding/onboarding_view.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -25,10 +26,10 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-      primaryColor: TColor.primary,
+        primaryColor: TColor.primary,
         fontFamily: 'SF Pro Text',
       ),
-      home: const OnboardingView(),
+      home: const MainTabView(),
     );
   }
 }

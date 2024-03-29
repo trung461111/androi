@@ -1,5 +1,6 @@
 import 'package:bookapp/common/color_extension.dart';
 import 'package:flutter/material.dart';
+import 'package:bookapp/view/home/home_view.dart';
 
 // import '../account/account_view.dart';
 // import '../home/home_view.dart';
@@ -181,7 +182,7 @@ class _MainTabViewState extends State<MainTabView>
         ),
       ),
       body: TabBarView(controller: controller, children: [
-        // const HomeView(),
+         const HomeView(),
         // const SearchView(),
         Container(),
         Container(),
