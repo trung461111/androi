@@ -2,9 +2,9 @@ import 'package:bookapp/common/color_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:bookapp/view/home/home_view.dart';
 
-// import '../account/account_view.dart';
+import 'package:bookapp/view/account/account_view.dart';
 import '../home/home_view.dart';
-// import '../our_book/out_books_view.dart';
+import 'package:bookapp/view/our_book/our_books_view.dart';
 import '../search/search_view.dart';
 
 class MainTabView extends StatefulWidget {
@@ -36,7 +36,6 @@ class _MainTabViewState extends State<MainTabView>
   @override
   void initState() {
     controller = TabController(length: 4, vsync: this);
-    // TODO: implement initState
     super.initState();
   }
 
@@ -84,21 +83,21 @@ class _MainTabViewState extends State<MainTabView>
                         child: GestureDetector(
                           onTap: () {
                             if (index == 1) {
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) =>
-                              //             const OurBooksView()));
-                              // sideMenuScaffoldKey.currentState
-                              //     ?.closeEndDrawer();
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const OurBooksView()));
+                              sideMenuScaffoldKey.currentState
+                                  ?.closeEndDrawer();
                             } else if (index == 7) {
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) =>
-                              //             const AccountView()));
-                              // sideMenuScaffoldKey.currentState
-                              //     ?.closeEndDrawer();
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const AccountView()));
+                              sideMenuScaffoldKey.currentState
+                                  ?.closeEndDrawer();
                             }
 
                             //

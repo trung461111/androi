@@ -7,6 +7,8 @@ import '../../common_widget/genres_cell.dart';
 import '../login/sign_up_view.dart';
 import '../main_tab_view/main_tab_view.dart';
 import '../../common_widget/recently_view_cell.dart';
+import '../../common_widget/top_pick_cell.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -146,28 +148,28 @@ class _HomeViewState extends State<HomeView> {
                             icon: const Icon(Icons.menu))
                       ],
                     ),
-                    // SizedBox(
-                    //   width: media.width,
-                    //   height: media.width * 0.8,
-                    //   child: CarouselSlider.builder(
-                    //     itemCount: topPicksArr.length,
-                    //     itemBuilder: (BuildContext context, int itemIndex,
-                    //         int pageViewIndex) {
-                    //       var iObj = topPicksArr[itemIndex] as Map? ?? {};
-                    //       return TopPicksCell(
-                    //         iObj: iObj,
-                    //       );
-                    //     },
-                    //     options: CarouselOptions(
-                    //       autoPlay: false,
-                    //       aspectRatio: 1,
-                    //       enlargeCenterPage: true,
-                    //       viewportFraction: 0.45,
-                    //       enlargeFactor: 0.4,
-                    //       enlargeStrategy: CenterPageEnlargeStrategy.zoom,
-                    //     ),
-                    //   ),
-                    // ),
+                    SizedBox(
+                      width: media.width,
+                      height: media.width * 0.8,
+                      child: CarouselSlider.builder(
+                        itemCount: topPicksArr.length,
+                        itemBuilder: (BuildContext context, int itemIndex,
+                            int pageViewIndex) {
+                          var iObj = topPicksArr[itemIndex] as Map? ?? {};
+                          return TopPicksCell(
+                            iObj: iObj,
+                          );
+                        },
+                        options: CarouselOptions(
+                          autoPlay: false,
+                          aspectRatio: 1,
+                          enlargeCenterPage: true,
+                          viewportFraction: 0.45,
+                          enlargeFactor: 0.4,
+                          enlargeStrategy: CenterPageEnlargeStrategy.zoom,
+                        ),
+                      ),
+                    ),
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Row(children: [
