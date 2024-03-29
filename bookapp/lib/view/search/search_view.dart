@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../../common/color_extension.dart';
 import '../../common_widget/history_row.dart';
 import '../../common_widget/search_grid_cell.dart';
-// import '../../common/extenstion.dart';
+import '../../common/extenstion.dart';
 
 class SearchView extends StatefulWidget {
   const SearchView({super.key});

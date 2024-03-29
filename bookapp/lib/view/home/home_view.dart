@@ -9,6 +9,7 @@ import '../main_tab_view/main_tab_view.dart';
 import '../../common_widget/recently_view_cell.dart';
 import '../../common_widget/top_pick_cell.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:bookapp/view/bookreading/book_reading_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -124,7 +125,7 @@ class _HomeViewState extends State<HomeView> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     SizedBox(
-                      height: media.width * 0.1,
+                      height: 20,
                     ),
                     AppBar(
                       backgroundColor: Colors.transparent,
@@ -194,12 +195,12 @@ class _HomeViewState extends State<HomeView> {
 
                             return GestureDetector(
                               onTap: () {
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) => BookReadingView(
-                                //               bObj: bObj,
-                                //             )));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => BookReadingView(
+                                              bObj: bObj,
+                                            )));
                               },
                               child: BestSellerCell(
                                 bObj: bObj,

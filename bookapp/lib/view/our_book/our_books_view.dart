@@ -27,7 +27,7 @@ class _OurBooksViewState extends State<OurBooksView> {
               alignment: Alignment.topCenter,
               children: [
                 Image.asset(
-                  "assets/img/our_books_top.png",
+                  "img/our_books_top.png",
                   width: media.width,
                   fit: BoxFit.fitWidth,
                 ),

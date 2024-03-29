@@ -10,17 +10,17 @@ class AccountView extends StatefulWidget {
 }
 
 class _AccountViewState extends State<AccountView> {
-  List purArr = ["assets/img/p1.jpg", "assets/img/p2.jpg", "assets/img/p3.jpg"];
+  List purArr = ["img/p1.jpg", "img/p2.jpg", "img/p3.jpg"];
 
   List sResultArr = [
     {
-      "img": "assets/img/p1.jpg",
+      "img": "img/p1.jpg",
       "description":
           "A must read for everybody. This book taught me so many things about...",
       "rate": 5.0
     },
     {
-      "img": "assets/img/p2.jpg",
+      "img": "img/p2.jpg",
       "description":
           "#1 international bestseller and award winning history book.",
       "rate": 4.0
@@ -78,7 +78,7 @@ class _AccountViewState extends State<AccountView> {
                   ClipRRect(
                       borderRadius: BorderRadius.circular(35),
                       child: Image.asset(
-                        "assets/img/u1.png",
+                        "img/u1.png",
                         width: 70,
                         height: 70,
                       )),
@@ -102,7 +102,7 @@ class _AccountViewState extends State<AccountView> {
                   ),
                   Expanded(
                       child: Text(
-                    "Newcastle - Australia",
+                    "HaNoi",
                     style: TextStyle(color: TColor.subTitle, fontSize: 13),
                   )),
                   const SizedBox(

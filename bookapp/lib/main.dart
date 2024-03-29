@@ -1,8 +1,8 @@
+import 'package:bookapp/view/onboarding/welcome_view.dart';
 import 'package:flutter/material.dart';
 import 'package:bookapp/view/main_tab_view/main_tab_view.dart';
 import 'package:bookapp/view/onboarding/onboarding_view.dart';
 import 'package:bookapp/common/color_extension.dart';
-
 
 void main() {
   runApp(const MyApp());
@@ -30,7 +30,8 @@ class MyApp extends StatelessWidget {
         primaryColor: TColor.primary,
         fontFamily: 'SF Pro Text',
       ),
-      home: const MainTabView(),
+      home: const OnboardingView(), 
+      
     );
   }
 }

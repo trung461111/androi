@@ -1,44 +1,31 @@
-import 'package:bookapp/common_widget/round_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import '../../common/color_extension.dart';
 
 class SearchForceView extends StatefulWidget {
-  final Function(Map)? didFilter;
-  const SearchForceView({super.key, this.didFilter});
+  final Function(String)? didSearch;
+  const SearchForceView({super.key, this.didSearch});
 
   @override
   State<SearchForceView> createState() => _SearchForceViewState();
 }
 
 class _SearchForceViewState extends State<SearchForceView> {
-  int selectSort = 0;
-  int selectGenre = 0;
-  int selectRate = 0;
-  bool genreShowMore = false;
+  TextEditingController txtSearch = TextEditingController();
 
-  List sortByArr = [
-    "Featured Titles",
-    "Price: Low to High",
-    "Price: High to Low",
-    "Publication Date",
-    "A - Z"
+  List perviousArr = [
+    "Search 1",
+    "Search 2",
+    "Search 3",
+    "Search 4",
+    "Search 5"
   ];
-  List genreArr = [
-    "Biography",
-    "Business & Economics",
-    "Children",
-    "Cookery",
-    "Fiction",
-    "Biography1",
-    "Business & Economics1",
-    "Children1",
-    "Cookery1",
-    "Fiction1"
+  List resultArr = [
+    "Gross Anatomy",
+    "When To Rob A Bank",
+    "The Bite In The Apple",
+    "The Ignorant Maestro"
   ];
-
-  List ratingArr = [5.0, 4.0, 3.0, 2.0, 1.0];
 
   @override
   Widget build(BuildContext context) {
@@ -51,236 +38,109 @@ class _SearchForceViewState extends State<SearchForceView> {
         title: Row(
           children: [
             Expanded(
-                child: Text(
-              "Filter",
-              style: TextStyle(
-                  color: TColor.text,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700),
-            )),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: TColor.textbox,
+                    borderRadius: BorderRadius.circular(20)),
+                child: TextField(
+                  controller: txtSearch,
+                  onChanged: (value) {
+                    setState(() {});
+                  },
+                  decoration: InputDecoration(
+                    contentPadding:
+                        const EdgeInsets.symmetric(vertical: 15, horizontal: 8),
+                    focusedBorder: InputBorder.none,
+                    enabledBorder: InputBorder.none,
+                    errorBorder: InputBorder.none,
+                    prefixIcon: Icon(Icons.search, color: TColor.text),
+                    hintText: "Search here",
+                    labelStyle: const TextStyle(
+                      fontSize: 15,
+                    ),
+                  ),
+                ),
+              ),
+            ),
             const SizedBox(
               width: 8,
             ),
             TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  "Cancel",
+                  style: TextStyle(
+                    color: TColor.text,
+                    fontSize: 17,
+                  ),
+                ))
+          ],
+        ),
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (txtSearch.text.isEmpty)
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
               child: Text(
-                "Cancel",
+                "Previous Searches",
                 style: TextStyle(
-                  color: TColor.text,
-                  fontSize: 17,
-                ),
+                    color: TColor.subTitle,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700),
               ),
-            )
-          ],
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
+            ),
+          Expanded(
+            child: ListView.builder(
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
-              child: Text(
-                "Sort by",
-                style: TextStyle(color: TColor.subTitle, fontSize: 13),
-              ),
-            ),
-            ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              itemCount: sortByArr.length,
-              shrinkWrap: true,
+              itemCount: txtSearch.text.isEmpty
+                  ? perviousArr.length
+                  : resultArr.length,
               itemBuilder: (context, index) {
-                var itemName = sortByArr[index] as String? ?? "";
+                var searchResultText = (txtSearch.text.isEmpty
+                        ? perviousArr
+                        : resultArr)[index] as String? ??
+                    "";
                 return GestureDetector(
                   onTap: () {
-                    setState(() {
-                      selectSort = index;
-                    });
+                    if (widget.didSearch != null) {
+                      widget.didSearch!(searchResultText);
+                    }
+                    Navigator.pop(context);
                   },
                   child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 15, horizontal: 15),
                     child: Row(
                       children: [
-                        Icon(
-                            selectSort == index
-                                ? Icons.radio_button_checked
-                                : Icons.radio_button_off,
-                            color: selectSort == index
-                                ? TColor.primary
-                                : TColor.subTitle),
+                        Icon(Icons.search, color: TColor.subTitle),
                         const SizedBox(
-                          width: 15,
+                          width: 40,
                         ),
                         Expanded(
                             child: Text(
-                          itemName,
+                          searchResultText,
                           style: TextStyle(color: TColor.text, fontSize: 15),
                         )),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-              child: Text(
-                "Genre",
-                style: TextStyle(color: TColor.subTitle, fontSize: 13),
-              ),
-            ),
-            ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              itemCount: genreShowMore
-                  ? genreArr.length
-                  : (genreArr.length > 5 ? 5 : genreArr.length),
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                var itemName = genreArr[index] as String? ?? "";
-                return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      selectGenre = index;
-                    });
-                  },
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
-                    child: Row(
-                      children: [
-                        Icon(
-                            selectGenre == index
-                                ? Icons.radio_button_checked
-                                : Icons.radio_button_off,
-                            color: selectGenre == index
-                                ? TColor.primary
-                                : TColor.subTitle),
                         const SizedBox(
-                          width: 15,
+                          width: 4,
                         ),
-                        Expanded(
-                            child: Text(
-                          itemName,
-                          style: TextStyle(color: TColor.text, fontSize: 15),
-                        )),
+                        Text(
+                          "times",
+                          style: TextStyle(
+                              color: TColor.primaryLight, fontSize: 15),
+                        )
                       ],
                     ),
                   ),
                 );
               },
             ),
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  genreShowMore = !genreShowMore;
-                });
-              },
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
-                child: Row(
-                  children: [
-                    Icon(genreShowMore ? Icons.expand_less : Icons.expand_more,
-                        color: TColor.subTitle),
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    Expanded(
-                        child: Text(
-                      genreShowMore ? "Hide" : "See more",
-                      style: TextStyle(color: TColor.subTitle, fontSize: 15),
-                    )),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-              child: Text(
-                "Average Customer Review",
-                style: TextStyle(color: TColor.subTitle, fontSize: 13),
-              ),
-            ),
-            ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              itemCount: ratingArr.length,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                var itemName = ratingArr[index] as double? ?? 1.0;
-                return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      selectRate = index;
-                    });
-                  },
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Icon(
-                            selectRate == index
-                                ? Icons.radio_button_checked
-                                : Icons.radio_button_off,
-                            color: selectRate == index
-                                ? TColor.primary
-                                : TColor.subTitle),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        IgnorePointer(
-                          ignoring: true,
-                          child: RatingBar.builder(
-                            initialRating: itemName,
-                            minRating: 1,
-                            direction: Axis.horizontal,
-                            allowHalfRating: true,
-                            itemCount: 5,
-                            itemSize: 15,
-                            itemPadding:
-                                const EdgeInsets.symmetric(horizontal: 1.0),
-                            itemBuilder: (context, _) => Icon(
-                              Icons.star,
-                              color: TColor.primary,
-                            ),
-                            onRatingUpdate: (rating) {},
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-            const SizedBox(
-              height: 30,
-            )
-          ],
-        ),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        child: Container(
-          padding: const EdgeInsets.all(15),
-          decoration: const BoxDecoration(color: Colors.white, boxShadow: [
-            BoxShadow(
-              color: Colors.black26,
-              blurRadius: 3,
-              offset: Offset(0, -3),
-            ),
-          ]),
-          child: RoundButton(
-              title: "Apply",
-              onPressed: () {
-                Navigator.pop(context);
-              }),
-        ),
+          )
+        ],
       ),
     );
   }

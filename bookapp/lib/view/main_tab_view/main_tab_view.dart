@@ -69,9 +69,10 @@ class _MainTabViewState extends State<MainTabView>
                     children: menuArr.map((mObj) {
                       var index = menuArr.indexOf(mObj);
                       return Container(
-                         margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 15),
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 4, horizontal: 15),
                         padding: const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 12),
+                            vertical: 5, horizontal: 12),
                         decoration: selectMenu == index
                             ? BoxDecoration(color: TColor.primary, boxShadow: [
                                 BoxShadow(
@@ -115,7 +116,7 @@ class _MainTabViewState extends State<MainTabView>
                                     color: selectMenu == index
                                         ? Colors.white
                                         : TColor.text,
-                                    fontSize: 18,
+                                    fontSize: 15,
                                     fontWeight: FontWeight.w700),
                               ),
                               const SizedBox(
@@ -135,7 +136,7 @@ class _MainTabViewState extends State<MainTabView>
                     }).toList()),
                 Container(
                   margin:
-                      const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                      const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -147,7 +148,7 @@ class _MainTabViewState extends State<MainTabView>
                             size: 25,
                           )),
                       const SizedBox(
-                        width: 15,
+                        width: 10,
                       ),
                       TextButton(
                         onPressed: () {},
@@ -155,12 +156,12 @@ class _MainTabViewState extends State<MainTabView>
                           "Terns",
                           style: TextStyle(
                               color: TColor.subTitle,
-                              fontSize: 17,
+                              fontSize: 12,
                               fontWeight: FontWeight.w700),
                         ),
                       ),
                       const SizedBox(
-                        width: 15,
+                        width: 10,
                       ),
                       TextButton(
                         onPressed: () {},
@@ -168,7 +169,7 @@ class _MainTabViewState extends State<MainTabView>
                           "Privacy",
                           style: TextStyle(
                               color: TColor.subTitle,
-                              fontSize: 17,
+                              fontSize: 15,
                               fontWeight: FontWeight.w700),
                         ),
                       ),
@@ -183,8 +184,8 @@ class _MainTabViewState extends State<MainTabView>
       body: TabBarView(controller: controller, children: [
         const HomeView(),
         const SearchView(),
-        Container(),
-        Container(),
+        // Container(),
+        // Container(),
       ]),
       bottomNavigationBar: BottomAppBar(
         color: TColor.primary,
