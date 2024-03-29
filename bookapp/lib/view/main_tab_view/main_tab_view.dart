@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:bookapp/view/home/home_view.dart';
 
 // import '../account/account_view.dart';
-// import '../home/home_view.dart';
+import '../home/home_view.dart';
 // import '../our_book/out_books_view.dart';
-// import '../search/search_view.dart';
+import '../search/search_view.dart';
 
 class MainTabView extends StatefulWidget {
   const MainTabView({super.key});
@@ -70,9 +70,9 @@ class _MainTabViewState extends State<MainTabView>
                     children: menuArr.map((mObj) {
                       var index = menuArr.indexOf(mObj);
                       return Container(
-                        // margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 15),
+                         margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 15),
                         padding: const EdgeInsets.symmetric(
-                            vertical: 12, horizontal: 15),
+                            vertical: 10, horizontal: 12),
                         decoration: selectMenu == index
                             ? BoxDecoration(color: TColor.primary, boxShadow: [
                                 BoxShadow(
@@ -182,8 +182,8 @@ class _MainTabViewState extends State<MainTabView>
         ),
       ),
       body: TabBarView(controller: controller, children: [
-         const HomeView(),
-        // const SearchView(),
+        const HomeView(),
+        const SearchView(),
         Container(),
         Container(),
       ]),
